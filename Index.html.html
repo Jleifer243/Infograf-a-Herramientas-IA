@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Interactiva: Herramientas IA para la Educación</title>
+    <!-- Carga de Tailwind CSS para un estilo rápido y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados para mejorar la apariencia y la legibilidad */
+        body {
+            font-family: 'Inter', sans-serif; /* Fuente Inter para una mejor legibilidad */
+            background: linear-gradient(135deg, #e0f7fa 0%, #c8e6c9 100%); /* Fondo degradado suave */
+            color: #2c3e50; /* Color de texto principal más oscuro */
+            line-height: 1.7;
+            padding-bottom: 60px; /* Espacio para el botón "Volver arriba" */
+            overflow-x: hidden; /* Evitar scroll horizontal */
+        }
+        .container {
+            max-width: 1200px; /* Ancho máximo del contenedor */
+            margin: 0 auto; /* Centrar el contenedor */
+            padding: 2rem; /* Espaciado interno generoso */
+        }
+        .hero-section {
+            background: linear-gradient(45deg, #667eea, #764ba2); /* Degradado vibrante para el héroe */
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 1.5rem; /* Bordes más redondeados */
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+            animation: moveGradient 10s infinite linear;
+            pointer-events: none;
+        }
+        @keyframes moveGradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hero-section h1 {
+            font-size: 3.5rem; /* Título más grande */
+            font-weight: 800; /* Extra bold */
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .hero-section p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: #ffffff; /* Fondo blanco para las tarjetas */
+            border-radius: 1rem; /* Bordes más redondeados */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transición suave al pasar el ratón */
+            border-left: 8px solid transparent; /* Borde izquierdo para color de categoría */
+        }
+        .card:hover {
+            transform: translateY(-8px); /* Efecto de elevación más pronunciado */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25); /* Sombra más grande */
+        }
+        details summary {
+            cursor: pointer; /* Cursor de puntero para indicar interactividad */
+            font-weight: 700; /* Texto en negrita para los títulos desplegables */
+            font-size: 1.5rem; /* Tamaño de fuente más grande */
+            padding: 1rem 0;
+            outline: none; /* Eliminar el contorno al hacer clic */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #2980b9; /* Color de título de herramienta */
+        }
+        details summary::-webkit-details-marker {
+            display: none; /* Ocultar el marcador predeterminado del navegador */
+        }
+        details summary::after {
+            content: '👇'; /* Icono de flecha hacia abajo */
+            font-size: 1.2rem;
+            transition: transform 0.3s ease; /* Transición para el icono */
+        }
+        details[open] summary::after {
+            content: '👆'; /* Icono de flecha hacia arriba cuando la sección está abierta */
+            transform: rotate(0deg); /* No rotar, solo cambiar el signo */
+        }
+        details[open] summary {
+            margin-bottom: 1rem; /* Espacio debajo del título cuando está abierto */
+        }
+        details p {
+            padding-left: 1rem; /* Indentación para el contenido */
+            border-left: 3px solid #e0e0e0; /* Borde sutil para el contenido */
+            margin-left: 1rem;
+            padding-bottom: 0.5rem;
+        }
+        .category-header {
+            background: linear-gradient(90deg, #42a5f5, #2196f3); /* Degradado para encabezados de categoría */
+            color: white;
+            padding: 1.2rem 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2.5rem;
+            font-size: 1.8rem; /* Tamaño de fuente más grande */
+            font-weight: 800;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.05em;
+        }
+        .link {
+            color: #3498db; /* Color azul más vivo para los enlaces */
+            text-decoration: none; /* Sin subrayado */
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+        .link:hover {
+            color: #2980b9; /* Oscurecer al pasar el ratón */
+            text-decoration: underline; /* Subrayado al pasar el ratón */
+        }
+        .tool-emoji {
+            font-size: 2.2rem; /* Tamaño grande para los emojis */
+            margin-right: 1rem;
+            vertical-align: middle;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem; /* Bordes más redondeados para videos */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 0.75rem;
+        }
+        .video-tutorial p {
+            padding-left: 0; /* Reset padding for video tutorial text */
+            border-left: none; /* Reset border for video tutorial text */
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #3498db;
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 9999px; /* Completamente redondo */
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+        }
+        .back-to-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        /* Colores de borde izquierdo para las tarjetas por categoría */
+        .card.category-1 { border-left-color: #3498db; } /* Azul para Traductores */
+        .card.category-2 { border-left-color: #2ecc71; } /* Verde para Imágenes/Videos */
+        .card.category-3 { border-left-color: #9b59b6; } /* Púrpura para Presentaciones */
+        .card.category-4 { border-left-color: #e67e22; } /* Naranja para Varias */
+
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <h1 class="text-white">🚀 Infografía Interactiva: Herramientas IA para la Educación</h1>
+        <p class="text-white">
+            ¡Hola a todos! Hoy vamos a explorar algunas herramientas de Inteligencia Artificial que pueden transformar nuestra forma de aprender y enseñar. ¡Prepárense para descubrir un mundo de posibilidades!
+        </p>
+    </div>
+
+    <div class="container">
+        <!-- Categoría: Traductores y Generadores de Contenido -->
+        <div class="category-header">🗣️ Traductores y Generadores de Contenido</div>
+        <div class="card category-1">
+            <details>
+                <summary><span class="tool-emoji">🌐</span> DeepL</summary>
+                <p>Un buen traductor es muy importante porque hay páginas que siguen mejor los prompts en inglés y, si es complejo y extenso lo ideal es utilizar esta página para hacer las traducciones.</p>
+                <p>🔗 <a href="https://www.deepl.com" target="_blank" class="link">https://www.deepl.com</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_DEEPL' con el ID real de un video de YouTube sobre DeepL -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_DEEPL" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_DEEPL' en el enlace de YouTube con el ID de un tutorial real de DeepL para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-1">
+            <details>
+                <summary><span class="tool-emoji">📓</span> NotebookLM</summary>
+                <p>Para crear podcast pero sobre todo en inglés, para crear audioguías en inglés estaría genial. Le subes un pdf y te saca el texto, lo transforma en audio, en diversos idiomas e incluso puede crear un mapa mental muy interesante. También se puede incluir imágenes manuscritas y las pasa a texto. El audio se puede modificar al idioma que queramos. También ofrece preguntas sobre los apuntes incluidos, un resumen, una explicación oral…</p>
+                <p>🔗 <a href="https://notebooklm.google/" target="_blank" class="link">Más información sobre NotebookLM</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_NOTEBOOKLM' con el ID real de un video de YouTube sobre NotebookLM -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_NOTEBOOKLM" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_NOTEBOOKLM' en el enlace de YouTube con el ID de un tutorial real de NotebookLM para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-1">
+            <details>
+                <summary><span class="tool-emoji">🎤</span> HeyGen</summary>
+                <p>Para poner voz de cualquier idioma a un video, podría ser un video nuestro que lo hacemos en español y hace una traducción perfecta a cualquier idioma sincronizando nuestros labios o también podemos utilizar un avatar cualquiera para poner nuestra voz, por ejemplo, crear un Don Quijote y con nuestra voz leer el libro.</p>
+                <p>🔗 <a href="https://www.heygen.com" target="_blank" class="link">https://www.heygen.com</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_HEYGEN' con el ID real de un video de YouTube sobre HeyGen -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HEYGEN" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_HEYGEN' en el enlace de YouTube con el ID de un tutorial real de HeyGen para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-1">
+            <details>
+                <summary><span class="tool-emoji">🔊</span> Eleven Labs</summary>
+                <p>Para poner audio a un texto, te da la voz del texto que le metes, Multitud de opciones para las voces, la velocidad e incluso interacción con la voz, a veces, hay que insistir mucho en que lo ponga español. Puede ser muy interesante para mejorar la pronunciación en los niveles más bajos. También generar audios desde libros o textos, hay un apartado que se llama agente de IA, se le sube un texto, cualquier usuario puede conversar con la IA sobre ese texto, o sobre la información proporcionada.</p>
+                <p>🔗 <a href="https://elevenlabs.io" target="_blank" class="link">https://elevenlabs.io</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_ELEVENLABS' con el ID real de un video de YouTube sobre Eleven Labs -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_ELEVENLABS" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_ELEVENLABS' en el enlace de YouTube con el ID de un tutorial real de Eleven Labs para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Categoría: Creación de Imágenes, Videos y Efectos -->
+        <div class="category-header">🎨 Creación de Imágenes, Videos y Efectos</div>
+        <div class="card category-2">
+            <details>
+                <summary><span class="tool-emoji">🎬</span> Kling AI</summary>
+                <p>Para editar videos e imágenes, se pueden obtener muchísimos efectos, la versión gratuita te va dando créditos cada mes. Por ejemplo, Obama en el aula del futuro.</p>
+                <p>🔗 <a href="https://kling.ai/" target="_blank" class="link">https://kling.ai/</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_KLINGAI' con el ID real de un video de YouTube sobre Kling AI -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_KLINGAI" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_KLINGAI' en el enlace de YouTube con el ID de un tutorial real de Kling AI para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-2">
+            <details>
+                <summary><span class="tool-emoji">🎨</span> Leonardo AI</summary>
+                <p>También para imágenes, tiene muchísimas opciones para video, seguramente sea de los mejores pero es de pago, gratis solo imágenes.</p>
+                <p>🔗 <a href="https://leonardo.ai" target="_blank" class="link">https://leonardo.ai</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_LEONARDOAI' con el ID real de un video de YouTube sobre Leonardo AI -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_LEONARDOAI" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_LEONARDOAI' en el enlace de YouTube con el ID de un tutorial real de Leonardo AI para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-2">
+            <details>
+                <summary><span class="tool-emoji">🇪🇺</span> Mistral AI</summary>
+                <p>Es la IA europea muy buena para crear imágenes.</p>
+                <p>🔗 <a href="https://mistral.ai" target="_blank" class="link">https://mistral.ai</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_MISTRALAI' con el ID real de un video de YouTube sobre Mistral AI -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_MISTRALAI" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_MISTRALAI' en el enlace de YouTube con el ID de un tutorial real de Mistral AI para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-2">
+            <details>
+                <summary><span class="tool-emoji">🌌</span> PixVerse</summary>
+                <p>Está genial para crear videos y efectos sobre una imagen subida.</p>
+                <p>🔗 <a href="https://pixverse.ai" target="_blank" class="link">https://pixverse.ai</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_PIXVERSE' con el ID real de un video de YouTube sobre PixVerse -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_PIXVERSE" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_PIXVERSE' en el enlace de YouTube con el ID de un tutorial real de PixVerse para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-2">
+            <details>
+                <summary><span class="tool-emoji">✂️</span> InVideo</summary>
+                <p>Para crear videos.</p>
+                <p>🔗 <a href="https://invideo.io" target="_blank" class="link">https://invideo.io</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_INVIDEO' con el ID real de un video de YouTube sobre InVideo -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_INVIDEO" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_INVIDEO' en el enlace de YouTube con el ID de un tutorial real de InVideo para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-2">
+            <details>
+                <summary><span class="tool-emoji">🌊</span> Hailuo</summary>
+                <p>También para crear videos y para poner movimiento a imágenes subidas.</p>
+                <p>🔗 <a href="https://www.hailuo.ai/" target="_blank" class="link">https://www.hailuo.ai/</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_HAILUO' con el ID real de un video de YouTube sobre Hailuo -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HAILUO" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_HAILUO' en el enlace de YouTube con el ID de un tutorial real de Hailuo para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-2">
+            <details>
+                <summary><span class="tool-emoji">🪄</span> Recraft AI</summary>
+                <p>Para crear imágenes y para modificar otras ya subidas, la batalla de Lopera con soldados en las trincheras. Señalas una zona de la imagen y le pides que en esa zona te incluya algo. Incluso incluir una imagen nuestra en algo creado, ejemplo de la taza en blanco con el logo del CEP de Jaén.</p>
+                <p>🔗 <a href="https://www.recraft.ai" target="_blank" class="link">https://www.recraft.ai</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_RECRAFTAI' con el ID real de un video de YouTube sobre Recraft AI -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_RECRAFTAI" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_RECRAFTAI' en el enlace de YouTube con el ID de un tutorial real de Recraft AI para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-2">
+            <details>
+                <summary><span class="tool-emoji">🔥</span> Adobe Firefly</summary>
+                <p>También permite modificar la imagen muy fácil, eliminar elementos, poner otros, en relleno generativo.</p>
+                <p>🔗 <a href="https://www.adobe.com/sensei/generative-ai/firefly.html" target="_blank" class="link">https://www.adobe.com/sensei/generative-ai/firefly.html</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_ADOBEFIREFLY' con el ID real de un video de YouTube sobre Adobe Firefly -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_ADOBEFIREFLY" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_ADOBEFIREFLY' en el enlace de YouTube con el ID de un tutorial real de Adobe Firefly para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-2">
+            <details>
+                <summary><span class="tool-emoji">🎵</span> UDIO</summary>
+                <p>Alternativa a SUNO muy buena.</p>
+                <p>🔗 <a href="https://www.udio.com" target="_blank" class="link">https://www.udio.com</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_UDIO' con el ID real de un video de YouTube sobre UDIO -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_UDIO" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_UDIO' en el enlace de YouTube con el ID de un tutorial real de UDIO para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-2">
+            <details>
+                <summary><span class="tool-emoji">📸</span> Freepik</summary>
+                <p>Para crear videos con nuestras imágenes, el profesor tocando la guitarra. Parece muy bueno pero las mejores opciones son de pago, solo cuesta 5 euros, le metes diez imágenes tuyas y es como una manera de entrenarla y con esas imágenes te hace lo que quieras, por ejemplo, bailando, jugando al fútbol…</p>
+                <!-- No URL provided for Freepik in the original text -->
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_FREEPIK' con el ID real de un video de YouTube sobre Freepik -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_FREEPIK" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_FREEPIK' en el enlace de YouTube con el ID de un tutorial real de Freepik para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Categoría: Presentaciones, Mapas Mentales e Infografías -->
+        <div class="category-header">📊 Presentaciones, Mapas Mentales e Infografías</div>
+        <div class="card category-3">
+            <details>
+                <summary><span class="tool-emoji">✨</span> Gemini Canvas</summary>
+                <p>Interesante con la guía de estudio que sacas desde notebook puedes crear, presentaciones, infografías, mapas interactivos, juegos, todo tipo de estadísticas.</p>
+                <p>🔗 <a href="https://gemini.google.com" target="_blank" class="link">Más información sobre Gemini</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_GEMINICANVAS' con el ID real de un video de YouTube sobre Gemini Canvas -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_GEMINICANVAS" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_GEMINICANVAS' en el enlace de YouTube con el ID de un tutorial real de Gemini Canvas para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-3">
+            <details>
+                <summary><span class="tool-emoji">💭</span> Whimsical</summary>
+                <p>Es muy fácil hacer un diagrama de flujo o un mapa mental tienes la opción de que la IA te vaya dando ideas para completar, se pueden adjuntar imágenes o links, queda muy bonito.</p>
+                <p>🔗 <a href="https://whimsical.com" target="_blank" class="link">https://whimsical.com</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_WHIMSICAL' con el ID real de un video de YouTube sobre Whimsical -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_WHIMSICAL" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_WHIMSICAL' en el enlace de YouTube con el ID de un tutorial real de Whimsical para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-3">
+            <details>
+                <summary><span class="tool-emoji">💡</span> Gamma</summary>
+                <p>Similar al anterior, bastante bien para presentaciones. Por ejemplo, una muy rápida sobre el siglo de oro. Te permite incluir un pdf y te lo transforma en segundos para que puedas modificar todos los aspectos, ojo también tiene una serie de tokens que se van gastando.</p>
+                <!-- No valid URL provided for Gamma in the original text or previous immersive -->
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_GAMMA' con el ID real de un video de YouTube sobre Gamma -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_GAMMA" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_GAMMA' en el enlace de YouTube con el ID de un tutorial real de Gamma para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-3">
+            <details>
+                <summary><span class="tool-emoji">📈</span> Infography.in</summary>
+                <p>Página para hacer infografías, no me han gustado los resultados aunque hace una infografía de cualquier tema en un segundo. Ya no tiene sentido porque gemini canvas te lo hace mejor.</p>
+                <p>🔗 <a href="https://app.infography.in/login" target="_blank" class="link">https://app.infography.in/login</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_INFOGRAPHY' con el ID real de un video de YouTube sobre Infography.in -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_INFOGRAPHY" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_INFOGRAPHY' en el enlace de YouTube con el ID de un tutorial real de Infography.in para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Categoría: Herramientas Varias y Laboratorios de IA -->
+        <div class="category-header">🛠️ Herramientas Varias y Laboratorios de IA</div>
+        <div class="card category-4">
+            <details>
+                <summary><span class="tool-emoji">🔬</span> Google AI Studio</summary>
+                <p>Es una herramienta brutal, sería una especie de laboratorio para experimentar con IA. Tiene varios apartados en la barra de la izquierda, una para aplicaciones ya creadas sobre las que se trabajar, por ejemplo una IA con la interactuar con una conversación, o un creador de mapas 3d. También se puede generar imágenes y videos o animar imágenes subidas. La opción stream sirve para indicarle unas instrucciones para que sepa como comportarse y le das a compartir pantalla con lo que tu prefieras, unos apuntes, una imagen o lo que sea y le das la IA le explica de una forma muy correcta todo lo necesario. Pero tiene tokens limitados.</p>
+                <p>🔗 <a href="https://aistudio.google.com/" target="_blank" class="link">https://aistudio.google.com/</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_AISTUDIO' con el ID real de un video de YouTube sobre Google AI Studio -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_AISTUDIO" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_AISTUDIO' en el enlace de YouTube con el ID de un tutorial real de Google AI Studio para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-4">
+            <details>
+                <summary><span class="tool-emoji">⚡</span> Brisk Teaching (Extensión Chrome)</summary>
+                <p>Cuando estés en cualquier página o incluso viendo un video de youtube te permite hacer un cuestionario sobre esa página o una UDI, una presentación, rúbrica, cualquier cosa, muy buena.</p>
+                <p>🔗 <a href="https://www.briskteaching.com" target="_blank" class="link">https://www.briskteaching.com</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_BRISKTEACHING' con el ID real de un video de YouTube sobre Brisk Teaching -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_BRISKTEACHING" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_BRISKTEACHING' en el enlace de YouTube con el ID de un tutorial real de Brisk Teaching para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-4">
+            <details>
+                <summary><span class="tool-emoji">✍️</span> Comentario de Texto L87 (GPT)</summary>
+                <p>Hay gpts de comentario de texto pero, él utiliza “comentario de texto L87”, se adjunta el documento en PDF y te propone áreas de mejora y correcciones.</p>
+                <p>🔗 <a href="https://chat.openai.com/gpts" target="_blank" class="link">Buscar "Comentario de Texto L87" en GPTs</a> (Requiere ChatGPT Plus)</p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_COMENTARIOTEXTO' con el ID real de un video de YouTube sobre Comentario de Texto L87 -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_COMENTARIOTEXTO" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_COMENTARIOTEXTO' en el enlace de YouTube con el ID de un tutorial real de Comentario de Texto L87 para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-4">
+            <details>
+                <summary><span class="tool-emoji">🧑‍💻</span> Copilot Studio</summary>
+                <p>Es parecido a los GPTs de Chat GPT pero aquí se llaman agentes y puedes ir buscando chats específicos para cada tema.</p>
+                <p>🔗 <a href="https://copilotstudio.microsoft.com/" target="_blank" class="link">https://copilotstudio.microsoft.com/</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_COPILOTSTUDIO' con el ID real de un video de YouTube sobre Copilot Studio -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_COPILOTSTUDIO" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_COPILOTSTUDIO' en el enlace de YouTube con el ID de un tutorial real de Copilot Studio para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-4">
+            <details>
+                <summary><span class="tool-emoji">💬</span> Glasp (Extensión Chrome)</summary>
+                <p>Trabajar con subtítulos de youtube con la extensión de Chrome Glasp. Coge los subtítulos y te los resumen, o te propone preguntas para trabajar con ellos.</p>
+                <p>🔗 <a href="https://glasp.co" target="_blank" class="link">https://glasp.co</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_GLASP' con el ID real de un video de YouTube sobre Glasp -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_GLASP" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_GLASP' en el enlace de YouTube con el ID de un tutorial real de Glasp para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-4">
+            <details>
+                <summary><span class="tool-emoji">🖼️</span> Microsoft Designer</summary>
+                <p>Para diseñar infografías, carteles, folletos, solo nos deja con cuenta de hotmail o outlook. Alternativa a Canva. Aunque los resultados no me han parecido demasiado bonitos.</p>
+                <p>🔗 <a href="https://designer.microsoft.com" target="_blank" class="link">https://designer.microsoft.com</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_MSDESIGNER' con el ID real de un video de YouTube sobre Microsoft Designer -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_MSDESIGNER" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_MSDESIGNER' en el enlace de YouTube con el ID de un tutorial real de Microsoft Designer para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+        <div class="card category-4">
+            <details>
+                <summary><span class="tool-emoji">🧱</span> Minecraft Education</summary>
+                <p>Para gamificación.</p>
+                <p>🔗 <a href="https://education.minecraft.net/" target="_blank" class="link">https://education.minecraft.net/</a></p>
+                <div class="video-tutorial mt-4">
+                    <p class="font-semibold mb-2">Video Tutorial:</p>
+                    <div class="video-container">
+                        <!-- Reemplaza 'VIDEO_ID_MINECRAFTEDU' con el ID real de un video de YouTube sobre Minecraft Education -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_MINECRAFTEDU" allowfullscreen></iframe>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        💡 **Consejo:** Puedes reemplazar 'VIDEO_ID_MINECRAFTEDU' en el enlace de YouTube con el ID de un tutorial real de Minecraft Education para que el video se muestre aquí.
+                    </p>
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top">Volver arriba</a>
+
+    <script>
+        // No hay código de gráfico circular ya que ha sido eliminado
+    </script>
+</body>
+</html>
